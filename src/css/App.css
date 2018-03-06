@@ -1,0 +1,91 @@
+:root {
+  --color-grey: #444;
+  --color-red: red;
+  --color-green: green;
+}
+
+.cloud__grid {
+  display: flex;
+  align-items: center;
+  max-height: 100vh;
+}
+
+.cloud__collection {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  flex: 1 1 60vw;
+  height: 90vh;
+}
+
+.cloud__selected {
+  flex: 1 1 20em;
+}
+
+.tag {
+  margin: 2vh 2vw;
+  list-style: none;
+  padding: 0;
+  color: var(--color-grey);
+}
+
+.tag--green {
+  color: var(--color-green);
+}
+
+.tag--red {
+  color: var(--color-red);
+}
+
+.tag__button {
+  max-width: 5em;
+  border-radius: 50%;
+  font-size: inherit;
+  color: inherit;
+  border: none;
+  background: none;
+  padding: 0;
+  transition: 0.1s;
+  cursor: pointer;
+}
+
+.tag__button:hover {
+  transform: scale(1.1);
+}
+
+.tag__button:focus {
+  background: red;
+  transform: scale(1.2);
+  outline: none;
+}
+
+
+.tag--size-1 {
+  font-size: 0.75em;
+}
+
+.tag--size-2 {
+  font-size: 1em;
+}
+
+.tag--size-3 {
+  font-size: 1.25em;
+}
+
+.tag--size-4 {
+  font-size: 1.5em;
+}
+
+.tag--size-5 {
+  font-size: 2em;
+}
+
+.tag--size-6 {
+  font-size: 3em;
+}
+
+dl, dd {
+  padding: 0;
+  margin: 0;
+}
