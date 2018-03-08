@@ -34,12 +34,12 @@ class Topic extends Component {
             show: false,
         })
         clearTimeout(this.wait);
-        this.wait = window.setTimeout(this.makeSquare.bind(this), 200);
+        this.wait = window.setTimeout(this.animateIn.bind(this), 200);
     }
 
-    makeSquare(){
-        const width = this.tag.offsetWidth;
-        this.tag.style.height = `${width}px`;
+    animateIn(){
+        // const width = this.tag.offsetWidth;
+        // this.tag.style.height = `${width}px`;
         this.setState({
             show: true,
         })
@@ -64,11 +64,18 @@ class Topic extends Component {
         const topic = this.props.topic;
         return (
             <li ref={tag => this.tag = tag}
-                className={`tag tag--size-${topic.group} tag--${this.state.show ? 'show' : 'hide'} ${this.state.colorClass} ${this.props.selected ? 'tag--selected' : ''}`}>
+                className={`tag tag--size-${topic.group} 
+                    ${this.state.colorClass} ${this.props.selected ? 'tag--selected' : ''}
+                    tag--${this.state.show ? 'show' : 'hide'}`
+                }>
                 <button className="tag__button" 
                     onClick={() => this.props.onSelect(topic.id)}>
                     {this.state.splitLabel.map((word, i) => 
-                        <span key={i} className="tag__word">{word}</span>)
+                        <span key={i} 
+                            data-length={word.length} 
+                            className="tag__word">
+                            {word}
+                        </span>)
                     }
                 </button>
             </li>
