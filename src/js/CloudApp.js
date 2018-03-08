@@ -37,7 +37,12 @@ class App extends Component {
         selected: selected,
       })
     }
+  }
 
+  componentDidMount() {
+    this.setState({
+      appMounted: true,
+    })
   }
 
   render() {
@@ -55,10 +60,12 @@ class App extends Component {
                 selectedTopicId={this.state.selectedTopicId}
                 onSelect={this.selectWord.bind(this)}
                 legendDetails={this.props.legendDetails}
+                appMounted={this.state.appMounted}
               />
               <TagDetails 
                 content={this.state.selected}
                 detailsAreas={this.props.detailsAreas}
+                appMounted={this.state.appMounted}
                 />
             </article>
           </div>

@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-// import balanceText from 'balance-text';
 
 class TagDetails extends Component {
 
@@ -7,22 +6,19 @@ class TagDetails extends Component {
         super(props);
         this.state = {
           ready: true,
-          modifierClass: '',
+          modifierClass: 'topic-details--waiting',
         };
     }
 
-    // balanceTitle() {
-    //     console.log('balance teitle', this.title);
-    //     balanceText(this.title);
-    // }
-
     componentWillReceiveProps(nextProps) {
-        this.switchNextProps = this.switchContent.bind(this,nextProps.content);
-        this.setState({
-                ready: false,
-                modifierClass: 'topic-details--hide',
-            }, () => this.details.addEventListener('animationend', this.switchNextProps)
-        );
+        if (nextProps.appMounted ) {
+            this.switchNextProps = this.switchContent.bind(this,nextProps.content);
+            this.setState({
+                    ready: false,
+                    modifierClass: `topic-details--${this.props.appMounted ? 'hide' : ''}`,
+                }, () => this.details.addEventListener('animationend', this.switchNextProps)
+            );
+        }
     }
 
     switchContent(content) {
@@ -34,18 +30,7 @@ class TagDetails extends Component {
         });
     }
 
-    // componentDidUpdate() {
-    //     window.setTimeout(this.balanceTitle.bind(this), 40);
-    // }
-
-    // componentDidMount() {
-    //     window.addEventListener('resize', this.balanceTitle.bind(this));
-    // }
-
-
-    render() {
-        this.props.detailsAreas.labels.map((area, i) => console.log(area,i))
-    
+    render() {    
         return(
             <section className="cloud__selected-topic">
                 <div className={`topic-details ${this.state.modifierClass}`} ref={details => this.details = details}>
@@ -53,10 +38,14 @@ class TagDetails extends Component {
                     <>
                         <h3 className="topic-details__title" ref={title => this.title = title}>{this.state.content.label}</h3>
                         <dl>
-                            {this.props.detailsAreas.labels.map((area, i) => <div key={i}>
-                                <dt>{area.title}</dt>
-                                <dd>{area.data.split('.').reduce((o,i)=>o[i], this.state.content) || 'zero'}</dd>
-                            </div>)}
+                            {this.props.detailsAreas.labels.map((area, i) => {
+                                const areaData = area.data.split('.').reduce((o,i)=>o[i], this.state.content) || 'zero';
+                                return <div key={i}>
+                                    <dt>{area.title}</dt>
+                                    <dd className={`${areaData === 'zero' ? 'deemphasise' : null}`}>{areaData}</dd>
+                                </div>
+                                }
+                            )}
                         </dl>
                     </> : <p>Select a topic to see more details</p>}
                 </div>

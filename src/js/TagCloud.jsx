@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
+import Topic from './Topic';
 
 class TagCloud extends Component {
     
-
-
     // componentDidMount() {
     //     console.log('mount');
     //     this.firstChild = this.ul.firstChild;
@@ -25,78 +24,17 @@ class TagCloud extends Component {
     render() {
         return (
             <ul className="cloud__collection"  ref={ul => this.ul = ul}>
-                {this.props.content.map(topic => {
-                    return <Topic key={topic.id} 
+                {this.props.content.map(topic => 
+                    <Topic key={topic.id} 
+                        appMounted={this.props.appMounted}
                         selected={this.props.selectedTopicId === topic.id}
                         topic={topic} 
-                        onSelect={this.props.onSelect}/>}
-                    )
-                }
+                        onSelect={this.props.onSelect}
+                    />
+                )}
             </ul>
         )
     }
 }
-
-class Topic extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-          selected: null,
-        };
-    }
-
-    componentWillMount() {
-        const wordCount = this.getWordCount(this.props.topic.label);
-        this.setState({
-            colorClass: this.getColorClass(this.props.topic.sentimentScore),
-            wordCount: wordCount,
-            splitLabel: this.props.topic.label.split(' '),
-        })
-    }
-
-    componentDidMount() {
-        window.setTimeout(this.makeSquare.bind(this), 100); // toDo check for styles;
-        window.addEventListener('resize', this.makeSquare.bind(this))
-    }
-
-    makeSquare(){
-        const width = this.tag.offsetWidth;
-        this.tag.style.height = `${width}px`;
-    }
-
-
-    getWordCount(str) {
-        return str.split(" ").length;
-    }
-
-
-    getColorClass(score) {
-
-        // toDo - get from this.props.legendDetails;        
-
-        if (score < 40) { //detail.condition
-            return 'tag--red';
-        } else if (score > 60) {
-            return 'tag--green';
-        } else {
-            return 'tag--grey';
-        }
-    }
-    
-    render() {
-        const topic = this.props.topic;
-        return (
-            <li ref={tag => this.tag = tag}
-                className={`tag tag--size-${topic.group} ${this.state.colorClass} ${this.props.selected ? 'tag--selected' : ''}`}
-                >
-                <button className="tag__button" onClick={() => this.props.onSelect(topic.id)}>
-                    {this.state.splitLabel.map((word, i) => <span key={i} className="tag__word">{word}</span>)}
-                </button>
-            </li>
-        )
-    }
-
-}
-
 
 export default TagCloud;
