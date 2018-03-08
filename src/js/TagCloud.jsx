@@ -2,9 +2,29 @@ import React, { Component } from 'react';
 
 class TagCloud extends Component {
     
+
+
+    // componentDidMount() {
+    //     console.log('mount');
+    //     this.firstChild = this.ul.firstChild;
+    //     this.lastChild = this.ul.lastChild;
+    //     this.adjustStartMargin();
+    //     window.addEventListener('resize', this.adjustStartMargin.bind(this));
+    // }
+
+    // adjustStartMargin() {
+
+    //     this.firstChild.style.marginLeft = '';
+    //     const parentRight = this.ul.getBoundingClientRect().right;
+    //     const diff = parentRight - this.lastChild.getBoundingClientRect().right;
+    //     console.log(diff);
+    //     console.log(this.firstChild);
+    //     this.firstChild.style.marginLeft = diff/3 + 'px';
+    // }
+
     render() {
         return (
-            <ul className="cloud__collection">
+            <ul className="cloud__collection"  ref={ul => this.ul = ul}>
                 {this.props.content.map(topic => {
                     return <Topic key={topic.id} 
                         selected={this.props.selectedTopicId === topic.id}
@@ -58,7 +78,7 @@ class Topic extends Component {
             return 'tag--grey';
         }
     }
-
+    
     render() {
         const topic = this.props.topic;
         return (

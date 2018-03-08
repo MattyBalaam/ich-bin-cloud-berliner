@@ -1,54 +1,53 @@
 import React, { Component } from 'react';
-import balanceText from 'balance-text';
+// import balanceText from 'balance-text';
 
 class TagDetails extends Component {
-
-    CARD_ANIM_TIME = 300;
 
     constructor(props) {
         super(props);
         this.state = {
           ready: true,
+          modifierClass: '',
         };
     }
 
-    balanceTitle() {
-        console.log('balance teitle', this.title);
-        balanceText(this.title);
-    }
+    // balanceTitle() {
+    //     console.log('balance teitle', this.title);
+    //     balanceText(this.title);
+    // }
 
     componentWillReceiveProps(nextProps) {
+        this.switchNextProps = this.switchContent.bind(this,nextProps.content);
         this.setState({
-            ready: false,
-            hide: true,
-        }, ()=> this.switchContent(nextProps.content));
+                ready: false,
+                modifierClass: 'topic-details--hide',
+            }, () => this.details.addEventListener('animationend', this.switchNextProps)
+        );
     }
 
     switchContent(content) {
-        window.setTimeout(()=> {
-            this.setState({
-                ready: true,
-                content: content,
-                hide: false,
-            });
-        }, this.CARD_ANIM_TIME);
-        
+        this.details.removeEventListener('animationend', this.switchNextProps);
+        this.setState({
+            ready: true,
+            content: content,
+            modifierClass: 'topic-details--show',
+        });
     }
 
-    componentDidUpdate() {
-        window.setTimeout(this.balanceTitle.bind(this), 40);
-    }
+    // componentDidUpdate() {
+    //     window.setTimeout(this.balanceTitle.bind(this), 40);
+    // }
 
-    componentDidMount() {
-        window.addEventListener('resize', this.balanceTitle.bind(this));
-    }
+    // componentDidMount() {
+    //     window.addEventListener('resize', this.balanceTitle.bind(this));
+    // }
 
     render() {
         return(
-            <section className="cloud__selected">
-                <div className={`topic-details ${this.state.content || this.state.hide ? `topic-details--${this.state.ready ? 'show' : 'hide'}`: null}`}>
+            <section className="cloud__selected-topic">
+                <div className={`topic-details ${this.state.modifierClass}`} ref={details => this.details = details}>
                     {this.state.content ?
-                    <div>
+                    <>
                         <h3 className="topic-details__title" ref={title => this.title = title}>{this.state.content.label}</h3>
                         <dl>
                             <dt>Total Mentions</dt>
@@ -60,7 +59,7 @@ class TagDetails extends Component {
                             <dt>Negative Mentions</dt>
                             <dd>{this.state.content.sentiment.negative || 'zero'}</dd>
                         </dl>
-                    </div> : <p>Select a topic to see more details</p>}
+                    </> : <p>Select a topic to see more details</p>}
                 </div>
             </section>
         )
