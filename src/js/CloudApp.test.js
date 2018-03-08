@@ -33,6 +33,11 @@ const testSet = {
 
 it('renders without crashing', () => {
   const div = document.createElement('div');
-  ReactDOM.render(<CloudApp details={testSet} />, div);
+  ReactDOM.render(<CloudApp data={testSet} clustering={2}/>, div);
   ReactDOM.unmountComponentAtNode(div);
 });
+
+// toDo: test to add >
+// detailsAreas={detailsAreas}
+// legendDetails={legendDetails}
+// sort='pyramid'
