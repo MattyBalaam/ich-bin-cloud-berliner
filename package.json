@@ -3,15 +3,27 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "balance-text": "^3.2.0",
     "ckmeans": "^1.0.1",
-    "react": "^16.2.0",
-    "react-dom": "^16.2.0",
+    "postcss-cssnext": "^3.1.0",
+    "postcss-nested": "^3.0.0",
+    "react": "16.2.0",
+    "react-dom": "16.2.0",
     "react-scripts": "1.1.1"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
-  }
+    "eject": "react-scripts eject",
+    "//postinstallsource": "//https://github.com/facebook/create-react-app/issues/2133",
+    "postinstall": "sed -i.bak \"s/[[:space:]]require('postcss-flexbugs-fixes')/require('postcss-cssnext'),require('postcss-nested'),require('postcss-flexbugs-fixes')/g\" node_modules/react-scripts/config/webpack.config.dev.js && sed -i.bak \"s/[[:space:]]require('postcss-flexbugs-fixes')/require('postcss-cssnext'),require('postcss-nested'),require('postcss-flexbugs-fixes')/g\" node_modules/react-scripts/config/webpack.config.prod.js"
+  },
+  "browserslist": [
+    "> 1%",
+    "Chrome > 35",
+    "Safari > 7",
+    "Firefox > 29",
+    "IE > 9"
+  ]
 }

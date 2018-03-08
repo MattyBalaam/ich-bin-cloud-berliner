@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import '../css/App.css';
-import data from '../json/topics.json';
 import TagCloud from './TagCloud';
 import TagDetails from './TagDetails';
 
 import ckMeansCluster from './utils/ckMeansCluster.js';
 import shuffle from './utils/shuffle.js';
+
+import 'core-js/fn/array/find'; // ie fix
 
 
 class App extends Component {
@@ -21,7 +22,7 @@ class App extends Component {
 
   componentWillMount() {
 
-    const topics = ckMeansCluster(data.topics, this.GROUPING);
+    const topics = ckMeansCluster(this.props.data.topics, this.GROUPING);
 
     this.setState({
       topics: shuffle(topics),
@@ -29,19 +30,26 @@ class App extends Component {
   }
 
   selectWord(id) {
-    const selected = this.state.topics.find(topic => topic.id === id)
-    this.setState({
-      selectedTopic: id,
-      selected: selected,
-    })
+    if (id !== this.state.selectedTopicId) {
+      const selected = this.state.topics.find(topic => topic.id === id)
+      this.setState({
+        selectedTopicId: id,
+        selected: selected,
+      })
+    }
+
   }
 
   render() {
 
     return (
       <main className="cloud">
+        <h1 className="cloud__title">Ich Bin Cloud Berliner</h1>
         <article className="cloud__grid">
-            <TagCloud content={this.state.topics} onSelect={this.selectWord.bind(this)}/>
+            <TagCloud 
+              content={this.state.topics}
+              selectedTopicId={this.state.selectedTopicId}
+              onSelect={this.selectWord.bind(this)}/>
             <TagDetails content={this.state.selected}/>
           </article>
       </main>

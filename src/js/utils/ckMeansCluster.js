@@ -1,5 +1,7 @@
 import ckmeans from 'ckmeans';
 
+import 'core-js/fn/array/find-index'; // ie fix
+
 const ckMeansCluster = (topics, number) => {
 
     const onedimension = topics.map((id, volume) => volume);
