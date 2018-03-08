@@ -65,7 +65,6 @@ class App extends Component {
                 content={this.state.selected}
                 detailsAreas={this.props.detailsAreas}
                 appMounted={this.state.appMounted}
-                legendDetails={this.props.legendDetails} 
                 />
             </article>
           </div>

@@ -11,17 +11,18 @@ class TagDetails extends Component {
     }
 
     componentWillReceiveProps(nextProps) {
-        if (nextProps.appMounted ) {
-            this.switchNextProps = this.switchContent.bind(this,nextProps.content);
+        console.log('nextProps.content', nextProps.content);
+        if (nextProps.appMounted) {
             this.setState({
                     ready: false,
                     modifierClass: `topic-details--${this.props.appMounted ? 'hide' : ''}`,
-                }, () => this.details.addEventListener('animationend', this.switchNextProps)
+                }, () => this.details.addEventListener('animationend', () => this.switchContent(nextProps.content))
             );
         }
     }
 
     switchContent(content) {
+        console.log('content', content);
         this.details.removeEventListener('animationend', this.switchNextProps);
         this.setState({
             ready: true,
