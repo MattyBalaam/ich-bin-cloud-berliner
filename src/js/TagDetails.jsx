@@ -44,12 +44,12 @@ class TagDetails extends Component {
           {this.state.content ?
           <>
             <h3 className="topic-details__title">{this.state.content.label}</h3>
-            <dl>
+            <dl className="topic-details__list">
               {this.props.detailsAreas.labels.map((area, i) => {
                 const areaData = this.getDataByStringRef(area.data, this.state.content) || 'zero';
                 return <div key={i}>
-                  <dt>{area.title}</dt>
-                  <dd className={`${areaData === 'zero' ? 'deemphasise' : null}`}>{areaData}</dd>
+                  <dt className="topic-details__type">{area.title}</dt>
+                  <dd className={`topic-details__value ${areaData === 'zero' ? 'deemphasise' : ''}`}>{areaData}</dd>
                 </div>
                 }
               )}

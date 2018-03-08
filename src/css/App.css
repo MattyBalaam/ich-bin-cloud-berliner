@@ -351,15 +351,15 @@ button {
       font-size: 2.67rem;
     }
   }
-  dl {
+  &__list {
     margin-top: 1em;
     position: relative;
   }
-  dt {
+  &__type {
     float: left;
     clear: left;
   }
-  dd {
+  &__value {
     float: right;
     &::after {
       content: "";
