@@ -123,6 +123,8 @@ button {
     z-index: -99;
     height: 100%;
     width: 100%;
+    left: 0;
+    top: 0;
     border-radius: 50%;
   }
   &:nth-child(even)::after {
