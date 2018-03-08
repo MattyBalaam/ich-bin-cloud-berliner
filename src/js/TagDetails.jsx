@@ -42,7 +42,10 @@ class TagDetails extends Component {
     //     window.addEventListener('resize', this.balanceTitle.bind(this));
     // }
 
+
     render() {
+        this.props.detailsAreas.labels.map((area, i) => console.log(area,i))
+    
         return(
             <section className="cloud__selected-topic">
                 <div className={`topic-details ${this.state.modifierClass}`} ref={details => this.details = details}>
@@ -50,14 +53,10 @@ class TagDetails extends Component {
                     <>
                         <h3 className="topic-details__title" ref={title => this.title = title}>{this.state.content.label}</h3>
                         <dl>
-                            <dt>Total Mentions</dt>
-                            <dd>{this.state.content.volume}</dd>
-                            <dt>Positive Mentions</dt>
-                            <dd>{this.state.content.sentiment.positive || 'zero'}</dd>
-                            <dt>Neutral Mentions</dt>
-                            <dd>{this.state.content.sentiment.neutral || 'zero'}</dd>
-                            <dt>Negative Mentions</dt>
-                            <dd>{this.state.content.sentiment.negative || 'zero'}</dd>
+                            {this.props.detailsAreas.labels.map((area, i) => <div key={i}>
+                                <dt>{area.title}</dt>
+                                <dd>{area.data.split('.').reduce((o,i)=>o[i], this.state.content) || 'zero'}</dd>
+                            </div>)}
                         </dl>
                     </> : <p>Select a topic to see more details</p>}
                 </div>

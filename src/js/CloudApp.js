@@ -52,8 +52,12 @@ class App extends Component {
               <TagCloud 
                 content={this.state.topics}
                 selectedTopicId={this.state.selectedTopicId}
-                onSelect={this.selectWord.bind(this)}/>
-              <TagDetails content={this.state.selected}/>
+                onSelect={this.selectWord.bind(this)}
+              />
+              <TagDetails 
+                content={this.state.selected}
+                detailsAreas={this.props.detailsAreas}
+                />
             </article>
           </div>
       </main>
