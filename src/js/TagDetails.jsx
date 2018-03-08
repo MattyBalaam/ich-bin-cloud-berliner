@@ -61,6 +61,7 @@ class TagDetails extends Component {
                         </dl>
                     </> : <p>Select a topic to see more details</p>}
                 </div>
+                
             </section>
         )
 
