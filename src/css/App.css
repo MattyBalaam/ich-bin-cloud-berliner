@@ -75,7 +75,7 @@ button {
   &__selected-topic {
     display: flex;
     perspective: 1000px;
-    flex: 0 0 10em;
+    flex: 0 0 11em;
     @media (--break-horizontal-min) {
       padding-left: 3em;
       flex: 0 1 var(--details-width);
