@@ -4,9 +4,10 @@
     --color-red: #C1272D;
     --color-green: #006837;
     --ease-overshoot: cubic-bezier(.35,1.38,.72,1.25);
-    --details-width: 20em;
+    --details-width: 17em;
   }
 
+@custom-media --break-horizontal-large-min (min-width: 1200px);
 @custom-media --break-horizontal-min (min-width: 1000px);
 @custom-media --break-vertical-max (max-width: 1000px);
 @custom-media --break-medium-min (min-width: 600px);
