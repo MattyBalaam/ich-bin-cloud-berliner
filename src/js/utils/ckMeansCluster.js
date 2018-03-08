@@ -1,4 +1,4 @@
-import ckmeans from 'ckmeans';
+import ckmeans from 'ckmeans/dist/ckmeans.min.js';
 
 import 'core-js/fn/array/find-index'; // ie fix
 
