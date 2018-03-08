@@ -7,4 +7,6 @@
     --details-width: 20em;
   }
 
-  
+@custom-media --break-horizontal-min (min-width: 1000px);
+@custom-media --break-vertical-max (max-width: 1000px);
+@custom-media --break-medium-min (min-width: 600px);

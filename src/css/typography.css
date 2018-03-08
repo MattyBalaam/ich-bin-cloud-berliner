@@ -1,7 +1,10 @@
 body {
     font-family: 'Pragati Narrow', sans-serif;
-    font-size: 15px; /*media queries*/;
-    @media (min-width: 1000px) {
+    font-size: 13px;
+    @media (--break-medium-min) {
+      font-size: 15px; 
+    }
+    @media (--break-horizontal-min) {
       font-size: 20px;
     }
 }
