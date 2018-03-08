@@ -3,13 +3,15 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "balance-text": "^3.2.0",
+    "balance-text": "3.2.0",
     "ckmeans": "^1.0.1",
-    "postcss-cssnext": "^3.1.0",
-    "postcss-nested": "^3.0.0",
+    "postcss-cssnext": "3.1.0",
+    "postcss-custom-media": "6.0.0",
+    "postcss-import": "11.1.0",
+    "postcss-nested": "3.0.0",
     "react": "16.2.0",
     "react-dom": "16.2.0",
-    "react-scripts": "1.1.1"
+    "react-scripts": "^2.0.0-next"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -17,13 +19,24 @@
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
     "//postinstallsource": "//https://github.com/facebook/create-react-app/issues/2133",
-    "postinstall": "sed -i.bak \"s/[[:space:]]require('postcss-flexbugs-fixes')/require('postcss-cssnext'),require('postcss-nested'),require('postcss-flexbugs-fixes')/g\" node_modules/react-scripts/config/webpack.config.dev.js && sed -i.bak \"s/[[:space:]]require('postcss-flexbugs-fixes')/require('postcss-cssnext'),require('postcss-nested'),require('postcss-flexbugs-fixes')/g\" node_modules/react-scripts/config/webpack.config.prod.js"
+    "postinstall": "sed -i.bak \"s/[[:space:]]require('postcss-flexbugs-fixes')/require('postcss-import'),require('postcss-cssnext'),require('postcss-nested'),require('postcss-custom-media'),require('postcss-flexbugs-fixes')/g\" node_modules/react-scripts/config/webpack.config.dev.js && sed -i.bak \"s/[[:space:]]require('postcss-flexbugs-fixes')/require('postcss-import'),require('postcss-cssnext'),require('postcss-nested'),require('postcss-flexbugs-fixes'),require('postcss-custom-media')/g\" node_modules/react-scripts/config/webpack.config.prod.js"
   },
-  "browserslist": [
-    "> 1%",
-    "Chrome > 35",
-    "Safari > 7",
-    "Firefox > 29",
-    "IE > 9"
-  ]
+  "browserslist": {
+    "development": [
+      "> 1%",
+      "Chrome > 35",
+      "Safari > 7",
+      "Firefox > 29",
+      "IE > 9"
+    ],
+    "production": [
+      ">1%",
+      "last 4 versions",
+      "Firefox ESR",
+      "not ie < 11"
+    ]
+  },
+  "devDependencies": {
+    "postcss-media-variables": "^2.0.1"
+  }
 }

@@ -1,0 +1,25 @@
+
+html {
+    box-sizing: border-box;
+    
+}
+*, *:before, *:after {
+box-sizing: inherit;
+}
+
+
+ul, 
+li, 
+dl, 
+dd,
+p,
+a,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    padding: 0;
+    margin: 0;
+}

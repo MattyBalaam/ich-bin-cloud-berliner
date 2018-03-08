@@ -1,23 +1,8 @@
-:root {
-  --color-off-black: #222222;
-  --color-grey: #666;
-  --color-red: #C1272D;
-  --color-green: #006837;
-  --ease-overshoot: cubic-bezier(.35,1.38,.72,1.25);
-}
+@import 'resets.css';
+@import 'variables.css';
+@import 'animations.css';
+@import 'typography.css';
 
-html {
-  box-sizing: border-box;
-  
-}
-*, *:before, *:after {
-  box-sizing: inherit;
-}
-
-body {
-  font-family: 'Pragati Narrow', sans-serif;
-  font-size: 20px; /*media queries*/;
-}
 
 button {
   font-family: 'Pragati Narrow', sans-serif;
@@ -26,9 +11,22 @@ button {
 
 .berliner {
   background: var(--color-off-black);
+  &__app {
+ 
+  }
 }
 
+@custom-media --break-horizontal-min (min-width: 800px);
+@custom-media --break-vertical-max (max-width: 800px);
+
+
 .cloud {
+  padding: 1em;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  height: 100vh;
+  width: 100vw;
   &__title {
     text-align: center;
     color: white;
@@ -36,46 +34,41 @@ button {
   &__grid {
     display: flex;
     align-items: center;
-    max-height: 100vh;
-    height: 80vh;
+    @media (--break-vertical-max) {
+      justify-content: space-around;
+      height: 100vh;
+      width: 100vw;
+      flex-direction: column;
+    }
   }
   &__collection {
     display: flex;
     align-items: center;
     justify-content: center;
     flex-wrap: wrap;
-    flex: 1 1 60vw;
     mix-blend-mode: screen;
-    /* height: 90vh; */
+    flex: 1 1 auto;
+    @media (--break-horizontal-min) {
+      flex: 1 1 60vw;
+    }
   }
-  &__selected {
+  &__selected-topic {
     display: flex;
-    padding: 3em;
-    flex: 0 0 25em;
+    padding-left: 3em;
     perspective: 1000px;
+    @media (--break-horizontal-min) {
+      flex: 0 1 var(--details-width);
+    }
   }
-}
-
-
-@keyframes explode {
-  0% {
-    transform: scale(0);
-  }
-  50% {
-    opacity: 1;
-  }
-  100% {
-    transform: scale(1);
-    opacity: 0; 
-  } 
 }
 
 .tag {
-  margin: -1vh -0.5vh;
+  margin: 4vh -0.5vh -4vh;
   list-style: none;
   color: white;
   border-radius: 50%;
   display: flex;
+  align-items: stretch;
   position: relative;
   z-index: 9;
   animation: appear 0.3s backwards var(--ease-overshoot);
@@ -83,6 +76,15 @@ button {
   transition: 0.2s all;
   &:nth-child(even) {
     opacity: 0.875;
+  }
+  &:nth-child(5n + 1) {
+    margin-top: 0;
+  }
+  &:nth-child(3n + 2) {
+    margin-top: 2.5vh;
+  }
+  &:nth-child(4n + 3) {
+    margin-top: -1vh;
   }
   &:hover {
     transform: scale(1.1);
@@ -133,7 +135,7 @@ button {
       animation: explode 0.3s ease-out 1 both;
     }
   }
-  &--size-1 { // hmmm perhaps flip this like headings.
+  &--size-1 { 
     font-size: 0.85em;
     animation-delay: 1.3s;
     &:nth-child(even) {
@@ -170,8 +172,8 @@ button {
   }
   &--size-6 {
     font-size: 2.2em;
-    margin-bottom: -4vh;
-    margin-top: -4vh;
+    margin-bottom: -4vh !important;
+    margin-top: -2vh !important;;
     /* animation-delay: 2s; */
   }
   &__button {
@@ -196,46 +198,52 @@ button {
   }
 }
 
-
-dl, dd {
-  padding: 0;
-  margin: 0;
-}
-
-
-@keyframes appear {
-  0% {
-    opacity: 0;
-    transform: scale(0.2);
+.key {
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  right: 1em;
+  bottom: 1em;
+  color: white;
+  outline: 1px solid white;
+  padding: 1em;
+  &__range {
+    text-indent: -1000%;
+    overflow:hidden;
+    height: 1.2em;
+    width: 1.2em;
+    float: left;
+    clear: left;
+    vertical-align: middle;
+    &--green {
+      background-color: var(--color-green);
+    }
+    &--red {
+      background-color: var(--color-red);
+    }
+    &--grey {
+      background-color: var(--color-grey);
+    }
   }
-}
+  &__description {
+    float: left;
+    margin-left: 1em;
+    margin-bottom: 0;
 
-@keyframes flip-out {
-  0% {
-    transform: rotateX(0deg);
-  }
-  100% {
-    transform: rotateX(90deg);
-    opacity: 0.4;
-  }
-}
-
-@keyframes flip-in {
-  0% {
-    transform: rotateX(-90deg);
-    opacity: 0.4;
-  }
-  100% {
-    transform: rotateX(0deg);
   }
 }
 
 .topic-details {
-  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
   background: white;
-  min-height: 33vh;
+  min-height: 15em;
+  width: var(--details-width);
   padding: 1em;
   animation: flip-in 0.3s backwards var(--ease-overshoot) 1.5s;
+  @media (--break-vertical-max) {
+    flex: 1 1 auto;
+  }
   &--hide {
     animation: flip-out 0.3s both ease-out;
   }
@@ -248,8 +256,10 @@ dl, dd {
     line-height: 1;
     display: block;
     padding-bottom: 1em;
+    margin-bottom: auto;
   }
   dl {
+    margin-top: auto;
     position: relative;
   }
   dt {

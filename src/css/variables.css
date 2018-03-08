@@ -1,0 +1,10 @@
+:root {
+    --color-off-black: #222222;
+    --color-grey: #666;
+    --color-red: #C1272D;
+    --color-green: #006837;
+    --ease-overshoot: cubic-bezier(.35,1.38,.72,1.25);
+    --details-width: 20em;
+  }
+
+  
