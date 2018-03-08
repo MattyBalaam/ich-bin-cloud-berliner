@@ -2,56 +2,63 @@ import React, { Component } from 'react';
 
 class TagDetails extends Component {
 
-    constructor(props) {
-        super(props);
-        this.state = {
-          ready: true,
-          modifierClass: 'topic-details--waiting',
-        };
-    }
+  constructor(props) {
+    super(props);
+    this.state = {
+      ready: true,
+      modifierClass: 'topic-details--waiting',
+    };
+  }
 
-    componentWillReceiveProps(nextProps) {
-        if (nextProps.appMounted) {
-            this.setState({
-                    ready: false,
-                    modifierClass: `topic-details--${this.props.appMounted ? 'hide' : ''}`,
-                }, () => this.details.addEventListener('animationend', () => this.switchContent(nextProps.content))
-            );
-        }
+  componentWillReceiveProps(nextProps) {
+    if (!nextProps.appMounted) {
+      return false;
     }
+    this.setState({
+      ready: false,
+      modifierClass: `topic-details--${this.props.appMounted ? 'hide' : ''}`,
+    }, () => this.switchContentAfterAnim(nextProps.content));
+  }
 
-    switchContent(content) {
-        this.details.removeEventListener('animationend', this.switchNextProps);
-        this.setState({
-            ready: true,
-            content: content,
-            modifierClass: 'topic-details--show',
-        });
-    }
+  switchContentAfterAnim(content) {
+    this.details.addEventListener('animationend', () => this.switchContent(content));
+  }
 
-    render() {    
-        return(
-            <section className="cloud__selected-topic">
-                <div className={`topic-details ${this.state.modifierClass}`} ref={details => this.details = details}>
-                    {this.state.content ?
-                    <>
-                        <h3 className="topic-details__title" ref={title => this.title = title}>{this.state.content.label}</h3>
-                        <dl>
-                            {this.props.detailsAreas.labels.map((area, i) => {
-                                const areaData = area.data.split('.').reduce((o,i)=>o[i], this.state.content) || 'zero';
-                                return <div key={i}>
-                                    <dt>{area.title}</dt>
-                                    <dd className={`${areaData === 'zero' ? 'deemphasise' : null}`}>{areaData}</dd>
-                                </div>
-                                }
-                            )}
-                        </dl>
-                    </> : <p>Select a topic to see more details</p>}
+  switchContent(content) {
+    this.details.removeEventListener('animationend', this.switchNextProps);
+    this.setState({
+      ready: true,
+      content: content,
+      modifierClass: 'topic-details--show',
+    });
+  }
+
+  getDataByStringRef(ref, obj) {
+    return ref.split('.').reduce((obj,idx)=>obj[idx], this.state.content);
+  }
+
+  render() {    
+    return(
+      <section className="cloud__selected-topic">
+        <div className={`topic-details ${this.state.modifierClass}`} ref={details => this.details = details}>
+          {this.state.content ?
+          <>
+            <h3 className="topic-details__title">{this.state.content.label}</h3>
+            <dl>
+              {this.props.detailsAreas.labels.map((area, i) => {
+                const areaData = this.getDataByStringRef(area.data, this.state.content) || 'zero';
+                return <div key={i}>
+                  <dt>{area.title}</dt>
+                  <dd className={`${areaData === 'zero' ? 'deemphasise' : null}`}>{areaData}</dd>
                 </div>
-            </section>
-        )
-
-    }
+                }
+              )}
+            </dl>
+          </> : <p>Select a topic to see more details</p>}
+        </div>
+      </section>
+    )
+  }
 }
 
 export default TagDetails;

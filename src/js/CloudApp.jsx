@@ -23,20 +23,20 @@ class App extends Component {
   componentWillMount() {
     const clustering = this.props.clustering || 20;
     const topics = ckMeansCluster(this.props.data.topics, clustering);
-    this.sorting = this.props.customSort || (this.props.sort === 'pyramid' ? pyramidSort : shuffle );
+    const sorting = this.props.customSort || (this.props.sortType === 'pyramid' ? pyramidSort : shuffle );
     this.setState({
-      topics: this.sorting(topics),
+      topics: sorting(topics),
     })
   }
 
   selectWord(id) {
-    if (id !== this.state.selectedTopicId) {
-      const selected = this.state.topics.find(topic => topic.id === id)
-      this.setState({
-        selectedTopicId: id,
-        selected: selected,
-      })
+    if (id === this.state.selectedTopicId) {
+      return false;
     }
+    this.setState({
+      selectedTopicId: id,
+      selected: this.state.topics.find(topic => topic.id === id),
+    })
   }
 
   componentDidMount() {
@@ -49,11 +49,11 @@ class App extends Component {
     return (
       <main className="cloud">
         <div className="cloud__inner">
-          <h1 className="cloud__title">Ich Bin Cloud Berliner</h1>
+          <h1 className="cloud__title">{this.props.title}</h1>
           {this.props.legendDetails ? 
             <Legend details={this.props.legendDetails}/> 
             : null }
-          <article className="cloud__grid">
+            <article className="cloud__grid">
               <TagCloud 
                 content={this.state.topics}
                 selectedTopicId={this.state.selectedTopicId}
@@ -65,7 +65,7 @@ class App extends Component {
                 content={this.state.selected}
                 detailsAreas={this.props.detailsAreas}
                 appMounted={this.state.appMounted}
-                />
+              />
             </article>
           </div>
       </main>

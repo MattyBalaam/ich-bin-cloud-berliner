@@ -3,22 +3,22 @@ import ReactDOM from 'react-dom';
 import Legend from './Legend';
 
 const testSet = { 
-    "title": "Sentiment",
-    "labels": [
-        {
-            "title": "red", 
-            "description": "under 40",
-            "condition": "< 40"
-        }, {
-            "title": "grey", 
-            "description": "40 – 60",
-            "condition": ""
-        }, {
-            "title": "green", 
-            "description": "over 60",
-            "condition": "> 60"
-        }
-    ]
+  "title": "Sentiment",
+  "labels": [
+    {
+      "title": "red", 
+      "description": "under 40",
+      "condition": "< 40"
+    }, {
+      "title": "grey", 
+      "description": "40 – 60",
+      "condition": ""
+    }, {
+      "title": "green", 
+      "description": "over 60",
+      "condition": "> 60"
+    }
+  ]
 }
 
 it('renders without crashing', () => {
