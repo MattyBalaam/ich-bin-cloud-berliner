@@ -5,18 +5,21 @@ import CloudApp from './js/CloudApp';
 import registerServiceWorker from './registerServiceWorker';
 import topics from './json/topics.json';
 
-const legendDetails = {
+const legendDetails = { //toDo rename
     "title": "Sentiment",
     "labels": [
         {
             "title": "red", 
-            "description": "under 40"
+            "description": "under 40",
+            "condition": "< 40"
         }, {
             "title": "grey", 
-            "description": "40 – 60"
+            "description": "40 – 60",
+            "condition": ""
         }, {
             "title": "green", 
-            "description": "over 60"
+            "description": "over 60",
+            "condition": "> 60"
         }
     ]
 }
@@ -45,5 +48,6 @@ ReactDOM.render(
         clustering={6}
         detailsAreas={detailsAreas}
         legendDetails={legendDetails}
+        sort='pyramid'
     />, document.getElementById('root'));
 registerServiceWorker();

@@ -69,8 +69,12 @@ class Topic extends Component {
         return str.split(" ").length;
     }
 
+
     getColorClass(score) {
-        if (score < 40) {
+
+        // toDo - get from this.props.legendDetails;        
+
+        if (score < 40) { //detail.condition
             return 'tag--red';
         } else if (score > 60) {
             return 'tag--green';

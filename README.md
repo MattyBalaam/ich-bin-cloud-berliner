@@ -2,7 +2,7 @@ Tested installing on OSX, but on Windows you may need to run
 
 `npm install --force` 
 
-
+sorting: choose between 'pyramid', 'shuffle' via sort probs, or custom function by customSort.
 
 
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
