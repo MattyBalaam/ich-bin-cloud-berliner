@@ -1,3 +1,5 @@
+View [demo version](https://mattybalaam.github.io/)
+
 Tested installing on OSX, but on Windows you may need to run
 
 `npm install --force` 
