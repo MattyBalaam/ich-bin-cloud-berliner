@@ -24,16 +24,16 @@
   "browserslist": {
     "development": [
       "> 1%",
-      "Chrome > 35",
-      "Safari > 7",
-      "Firefox > 29",
-      "IE > 9"
+      "last 4 versions"
     ],
     "production": [
-      ">1%",
-      "last 4 versions",
-      "Firefox ESR",
-      "not ie < 11"
+      "> 1%",
+      "last 4 versions",      
+      "Chrome > 62",
+      "Safari > 11",
+      "Edge > 40",
+      "Firefox > 57",
+      "IE 11"
     ]
   },
   "devDependencies": {
