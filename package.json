@@ -28,7 +28,7 @@
     ],
     "production": [
       "> 1%",
-      "last 4 versions",      
+      "last 4 versions",
       "Chrome > 62",
       "Safari > 11",
       "Edge > 40",
@@ -37,6 +37,11 @@
     ]
   },
   "devDependencies": {
-    "postcss-media-variables": "^2.0.1"
+    "babel-jest": "^22.4.1",
+    "enzyme": "^3.3.0",
+    "enzyme-adapter-react-16": "^1.1.1",
+    "enzyme-to-json": "^3.3.2",
+    "postcss-media-variables": "^2.0.1",
+    "react-test-renderer": "^16.2.0"
   }
 }

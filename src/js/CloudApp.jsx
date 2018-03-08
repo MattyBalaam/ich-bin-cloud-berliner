@@ -46,7 +46,6 @@ class App extends Component {
   }
 
   render() {
-
     return (
       <main className="cloud">
         <div className="cloud__inner">
