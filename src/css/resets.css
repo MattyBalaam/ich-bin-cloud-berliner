@@ -7,6 +7,9 @@ html {
 box-sizing: inherit;
 }
 
+main {
+    display: block;
+}
 
 ul, 
 li, 
