@@ -49,7 +49,6 @@ button {
     @media (--break-horizontal-min) {
       height: 90vw;
       max-width: calc(100vw - 2em); /* ie fix */
-      outline: 1px solid red;
     }
     @media (--break-vertical-max) {
       justify-content: flex-end;
