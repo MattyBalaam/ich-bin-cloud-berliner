@@ -11,7 +11,6 @@ class TagDetails extends Component {
     }
 
     componentWillReceiveProps(nextProps) {
-        console.log('nextProps.content', nextProps.content);
         if (nextProps.appMounted) {
             this.setState({
                     ready: false,
@@ -22,7 +21,6 @@ class TagDetails extends Component {
     }
 
     switchContent(content) {
-        console.log('content', content);
         this.details.removeEventListener('animationend', this.switchNextProps);
         this.setState({
             ready: true,
