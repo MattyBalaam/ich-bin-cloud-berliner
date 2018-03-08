@@ -92,6 +92,7 @@ button {
   align-items: center; 
   position: relative;
   transition: 0.2s all;
+  z-index: 1;
   &:nth-child(5n + 1) {
     margin-bottom: 0;
   }
@@ -107,10 +108,14 @@ button {
   }
   &--hide {
     opacity: 0 !important;
-    animation: none;
   }
   &--show {
     animation: appear 0.3s backwards var(--ease-overshoot);
+    will-change: opacity, transform;
+    /* opacity: 1; */
+  }
+  &--animating {
+    mix-blend-mode: unset !important; /* mix-blend-mode is buggy when animating */
   }
   &::after {
     content: " ";
@@ -124,25 +129,24 @@ button {
     opacity: 0.9;
   }
   &--green {
+    mix-blend-mode: soft-light;
     &::after {
-      mix-blend-mode: soft-light;
       background-color: var(--color-green); 
     }
   }
   &--red {
+    mix-blend-mode: luminosity;
     &::after {
-      mix-blend-mode: luminosity;
       background-color: var(--color-red);
     }
   }
   &--grey {
+    mix-blend-mode: soft-light;
     &::after {
-      mix-blend-mode: soft-light;
       background-color: var(--color-grey);
     }
   }
   &--selected {
-    background: white;
     transform: scale(1.2) !important;
     z-index: 10;
     overflow: visible;
@@ -160,6 +164,9 @@ button {
       }
     }
     &::after {
+      background: white;
+    }
+    &::before {
       content: "";
       height: 150%;
       width: 150%;

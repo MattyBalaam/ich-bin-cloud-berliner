@@ -6,7 +6,7 @@ class Topic extends Component {
         super(props);
         this.state = {
             selected: null,
-            show: false,
+            animClass: 'tag--hide',
         };
     }
 
@@ -21,6 +21,9 @@ class Topic extends Component {
 
     componentDidMount() {
         window.addEventListener('resize', this.resizeHandler.bind(this))
+        this.tag.addEventListener('animationend', ()=> {
+            this.tag.classList.remove('tag--animating');
+        });
     }
 
     componentDidUpdate(nextProps) {
@@ -31,7 +34,7 @@ class Topic extends Component {
 
     resizeHandler(){
         this.setState({
-            show: false,
+            animClass: 'tag--hide',
         })
         clearTimeout(this.wait);
         this.wait = window.setTimeout(this.animateIn.bind(this), 200);
@@ -41,8 +44,9 @@ class Topic extends Component {
         // const width = this.tag.offsetWidth;
         // this.tag.style.height = `${width}px`;
         this.setState({
-            show: true,
+            animClass: 'tag--show tag--animating',
         })
+
     }
 
     getWordCount(str) {
@@ -64,9 +68,7 @@ class Topic extends Component {
         const topic = this.props.topic;
         return (
             <li ref={tag => this.tag = tag}
-                className={`tag tag--size-${topic.group} 
-                    ${this.state.colorClass} ${this.props.selected ? 'tag--selected' : ''}
-                    tag--${this.state.show ? 'show' : 'hide'}`
+                className={`tag tag--size-${topic.group} ${this.state.animClass} ${this.state.colorClass} ${this.props.selected ? 'tag--selected' : ''}`
                 }>
                 <button className="tag__button" 
                     onClick={() => this.props.onSelect(topic.id)}>
