@@ -62,4 +62,4 @@ IE 11
 Note that for IE11 support some Polyfills and specific css rules have been used. These are all commented in the code because it might not be obvious why they are there. 
 
 ## Contributions
-Currently this app is lacking good test coverage because I don't have much experience with these, please feel free to lend a hand. 
+Currently this app is lacking good test coverage because I don't have much experience with these and this project also had a tight intital turnaround time, please feel free to lend a hand. 
