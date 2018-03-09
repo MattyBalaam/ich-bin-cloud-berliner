@@ -47,7 +47,7 @@ class App extends Component {
   render() {
     return (
       <main className="cloud">
-        <div className="cloud__inners">
+        <div className="cloud__inner">
           <h1 className="cloud__title">{this.props.title}</h1>
           {this.props.legendDetails ? 
             <Legend details={this.props.legendDetails}/> 

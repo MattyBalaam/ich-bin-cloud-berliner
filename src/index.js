@@ -4,13 +4,6 @@ import './css/index.css';
 import CloudApp from './js/CloudApp';
 import registerServiceWorker from './registerServiceWorker';
 import topics from './json/topics.json';
-import vhCheck from 'vh-check';
-
-const iOSfixVar = 'vh-offset';
-const iOSfixNeeded = vhCheck(iOSfixVar) //set css variable to alter iOS VH behaviour to make more consistent with other platdorms. 
-if (!iOSfixNeeded) {
-  document.documentElement.style.setProperty(`--${iOSfixVar}`, '0px');
-}
 
 const berlin = {
     title: 'Ich Bin Cloud Berliner',
