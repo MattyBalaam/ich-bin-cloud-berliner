@@ -48,7 +48,6 @@
       max-width: calc(100vw - 2em); /* ie fix */
     }
     @media (--break-vertical-max) {
-      /* justify-content: flex-end; */
       flex-direction: column;
     }
   }
