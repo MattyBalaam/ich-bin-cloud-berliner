@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import '../css/App.css';
+import '../css/CloudApp.css';
 import TagCloud from './TagCloud';
-import TagDetails from './TagDetails';
+import TopicDetails from './TopicDetails';
 import Legend from './Legend';
 
 import ckMeansCluster from './utils/ckMeansCluster.js';
@@ -61,7 +61,7 @@ class App extends Component {
                 legendDetails={this.props.legendDetails}
                 appMounted={this.state.appMounted}
               />
-              <TagDetails 
+              <TopicDetails 
                 content={this.state.selected}
                 detailsAreas={this.props.detailsAreas}
                 appMounted={this.state.appMounted}

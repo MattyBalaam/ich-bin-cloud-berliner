@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Topic from './Topic';
+import Tag from './Tag';
 
 class TagCloud extends Component {
     
@@ -7,7 +7,7 @@ class TagCloud extends Component {
     return (
       <ul className="cloud__collection"  ref={ul => this.ul = ul}>
         {this.props.content.map(topic => 
-          <Topic key={topic.id} 
+          <Tag key={topic.id} 
             appMounted={this.props.appMounted}
             selected={this.props.selectedTopicId === topic.id}
             topic={topic} 

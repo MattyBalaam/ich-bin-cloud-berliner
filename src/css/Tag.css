@@ -1,0 +1,188 @@
+
+.tag {
+  margin: -1em -0.33em -2.5em;
+  list-style: none;
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  width: 5em;
+  height: 5em;
+  align-items: center; 
+  position: relative;
+  transition: 0.2s all;
+  z-index: 1;
+  &:nth-child(5n + 1) {
+    margin-bottom: 0;
+  }
+  &:nth-child(3n + 2) {
+    margin-bottom: 1em;
+  }
+  &:nth-child(4n + 3) {
+    margin-bottom: -0.7em;
+  }
+  &:hover {
+    z-index: 10;
+    transform: scale(1.1);
+  }
+  &--hide {
+    opacity: 0 !important;
+  }
+  &--show {
+    animation: appear 0.3s backwards var(--ease-overshoot);
+    will-change: opacity, transform;
+    /* opacity: 1; */
+  }
+  &--animating {
+    mix-blend-mode: unset !important; /* mix-blend-mode is buggy when animating */
+  }
+  &::after {
+    content: " ";
+    position: absolute;
+    z-index: -99;
+    height: 100%;
+    width: 100%;
+    left: 0;
+    top: 0;
+    border-radius: 50%;
+  }
+  &:nth-child(even)::after {
+    opacity: 0.9;
+  }
+  &--green {
+    mix-blend-mode: soft-light;
+    &::after {
+      background-color: var(--color-green); 
+    }
+  }
+  &--red {
+    mix-blend-mode: luminosity;
+    &::after {
+      background-color: var(--color-red);
+    }
+  }
+  &--grey {
+    mix-blend-mode: soft-light;
+    &::after {
+      background-color: var(--color-grey);
+    }
+  }
+  &--selected {
+    transform: scale(1.2) !important;
+    z-index: 10;
+    overflow: visible;
+    opacity: 0.95 !important;
+    mix-blend-mode: normal;
+    &.tag {
+      &--green {
+        color: var(--color-green);
+      }
+      &--red {
+        color: var(--color-red);
+      }
+      &--grey {
+        color: var(--color-grey);
+      }
+    }
+    &::after {
+      background: white;
+    }
+    &::before {
+      content: "";
+      height: 150%;
+      width: 150%;
+      top: -25%;
+      left: -25%;
+      border-radius: 50%;
+      position: absolute;
+      box-shadow: inset 0 0 1em white;
+      z-index: 8;
+      pointer-events: none;
+      transform-origin: center;
+      display: block;
+      animation: explode 0.3s ease-out 1 both;
+    }
+  }
+  &--size-1 { 
+    font-size: 1em;
+    animation-delay: 1.3s;
+    &:nth-child(even) {
+      animation-delay: 1.4s;
+    }
+  }
+  &--size-2 {
+    font-size: 1.2em;
+    animation-delay: 1.1s;
+    &:nth-child(even) {
+      animation-delay: 1.2s;
+    }
+  }
+  &--size-3 {
+    font-size: 1.4em;
+    animation-delay: 0.8s;
+    &:nth-child(even) {
+      animation-delay: 0.95s;
+    }
+  }
+  &--size-4 {
+    font-size: 1.6em;
+    animation-delay: 0.5s;
+    &:nth-child(even) {
+      animation-delay: 0.65s;
+    }  
+  }
+  &--size-5 {
+    font-size: 1.8em;
+    animation-delay: 0.2s;
+    &:nth-child(even) {
+      animation-delay: 0.3s;
+    }  
+  }
+  &--size-6 {
+    font-size: 2.33em;
+    @media (--break-horizontal-min) {
+      font-size: 2em;
+    }
+    margin-bottom: 0em !important;
+    &:nth-child(even) {
+      margin-bottom: -2em !important;
+    }
+  }
+  &__button {
+    flex: 1 1 auto;
+    border-radius: 50%;
+    font-size: inherit;
+    color: inherit;
+    border: none;
+    background: none;
+    padding: 0 0.5em;
+    box-sizing: content-box;
+    height: 100%;
+    transition: 0.1s;
+    line-height: 1;
+    position: relative;
+    z-index: 5;
+    .tag--size-6 & {
+      padding: 0;
+    }
+    .tag:not(.tag--selected) & {
+      cursor: pointer;
+    }
+    &:focus {
+      outline: none;
+    }
+  }
+  &__word {
+    display: block;
+    &[data-length="1"],
+    &[data-length="2"],
+    &[data-length="3"] {
+      display: inline-block;
+      &::after {
+        content: "\00a0";
+      }
+      + .tag__word {
+        display: inline-block;
+      }
+    }
+  }
+}

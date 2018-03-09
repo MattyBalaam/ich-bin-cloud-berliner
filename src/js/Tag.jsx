@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 
-class Topic extends Component {
+class Tag extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -82,4 +82,4 @@ class Topic extends Component {
   }
 }
 
-export default Topic;
+export default Tag;

@@ -1,0 +1,47 @@
+
+.legend {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    right: 0.5em;
+    bottom: 0.5em;
+    color: white;
+    &__title {
+      font-size: 1.8em;
+      text-align: center;
+    }
+    &__labels {
+      @media (--break-horizontal-min) {
+        display: flex;
+        justify-content: center;
+        width: var(--details-width);
+      }
+    }
+    &__label {
+      display: flex;
+      align-items: center;
+      &:not(:last-of-type) {
+        margin-right: 1em;
+      }
+    }
+    &__symbol {
+      text-indent: -1000%;
+      overflow:hidden;
+      height: 1.2em;
+      width: 1.2em;
+      border-radius: 50%;
+      &--green {
+        background-color: var(--color-green);
+      }
+      &--red {
+        background-color: var(--color-red);
+      }
+      &--grey {
+        background-color: var(--color-grey);
+      }
+    }
+    &__description {
+      margin-left: 0.5em;
+      margin-bottom: 0;
+    }
+  }
