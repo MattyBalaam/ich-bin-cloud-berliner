@@ -1,4 +1,7 @@
+![screenshot of app](https://raw.githubusercontent.com/mattybalaam/ich-bin-cloud-berliner/master/app-screenshot.png)
+
 View [demo version](https://mattybalaam.github.io/)
+
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
 
 Tag cloud app which takes a json file, and other parameters to show a word cloud which is interactive, showing more metadata when words are selected.
