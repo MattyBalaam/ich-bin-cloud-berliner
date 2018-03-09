@@ -16,9 +16,9 @@ The Tag Cloud takes parameters as props
 - *legendDetails*: JSON object representing a lengend of the tags colour coding. 
 
 ## Requirements
-`Node` - 9.3.0 tested; you may find other versions work
-`NPM` - 5.5.1 tested; you may find other versions work
-or alternatively `Yarn`.
+- `Node` - 9.3.0 tested; you may find other versions work
+- `NPM` - 5.5.1 tested; you may find other versions work
+- or alternatively `Yarn`.
 
 ## Installation
 1. Clone this repository 
