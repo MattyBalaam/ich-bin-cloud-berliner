@@ -24,7 +24,6 @@ The Tag Cloud takes parameters as props
 1. Clone this repository 
 2. run `npm install` (if you get errors on Windows you may need to try `npm install --force`)
 
-Note: you may see some warnings about postcss-custom-properties and the --vh-offset variable - this warning will need to be suppresed. The purpose is to workaround iOS's implementation of the VH unit.
 ## Scripts
 
 ### `npm run build`
@@ -62,5 +61,9 @@ IE 11
 
 Note that for IE11 support some Polyfills and specific css rules have been used. These are all commented in the code because it might not be obvious why they are there. 
 
+## Known Issues 
+ 
+A workaround for iOS devices implementation of viewport units, in particlar VH needs to be considered and implemented. Perhaps something like the 'vh-check' module which was tried but was buggy.
+ 
 ## Contributions
 Currently this app is lacking good test coverage because I don't have much experience with these and this project also had a tight intital turnaround time, please feel free to lend a hand. 
