@@ -5,6 +5,7 @@
   
 .cloud {
   height: 100vh;
+  height: calc(100vh - var(--vh-offset)); /* improvement - write postcss plugin) */
   width: 100vw;
   overflow: hidden; /*stop animations creating scrollbars*/
   padding: 0.5em;
@@ -16,7 +17,8 @@
     flex-direction: column;
     justify-content: space-between;
     position: relative;
-    height: calc(100vh - 1em);
+    height: calc(100vh - 1em); 
+    height: calc((100vh - 1em) - var(--vh-offset)); 
     max-width: 1400px;
     margin: auto;
     @media (--break-horizontal-min) {
@@ -35,9 +37,11 @@
     display: flex;
     justify-content: space-between;
     height: calc(100vh - 4.5em);
+    height: calc(100vh - 4.5em + var(--vh-offset));
     @media (--break-medium-min) {
       align-items: center;
       height: calc(100vh - 2em);
+      height: calc(100vh - 2em - var(--vh-offset));
     } 
     @media (--break-horizontal-min) {
       height: 90vw;

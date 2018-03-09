@@ -11,7 +11,8 @@
     "postcss-nested": "3.0.0",
     "react": "16.2.0",
     "react-dom": "16.2.0",
-    "react-scripts": "^2.0.0-next"
+    "react-scripts": "^2.0.0-next",
+    "vh-check": "github:hiswe/vh-check"
   },
   "scripts": {
     "start": "react-scripts start",
