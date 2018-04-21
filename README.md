@@ -1,6 +1,6 @@
 ![screenshot of app](https://raw.githubusercontent.com/mattybalaam/ich-bin-cloud-berliner/master/app-screenshot.png)
 
-View [demo version](https://mattybalaam.github.io/)
+View [demo version](https://mattybalaam.github.io/ich-bin-cloud-berliner/)
 
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
 
